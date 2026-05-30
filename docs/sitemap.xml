@@ -1,0 +1,28 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/1. index.html</loc></url>
+<url><loc>/articles/2. getting-started.html</loc></url>
+<url><loc>/articles/3. molecular-evolution.html</loc></url>
+<url><loc>/articles/4. diversity-metrics.html</loc></url>
+<url><loc>/articles/5. protocells.html</loc></url>
+<url><loc>/articles/6. autocatalytic-networks.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/reference/autocatalytic_network.html</loc></url>
+<url><loc>/reference/create_prebiotic_pool.html</loc></url>
+<url><loc>/reference/evolve_generation.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/lifesimulatoR-package.html</loc></url>
+<url><loc>/reference/molecule_fitness.html</loc></url>
+<url><loc>/reference/mutate_population.html</loc></url>
+<url><loc>/reference/mutate_sequence.html</loc></url>
+<url><loc>/reference/plot_simulation.html</loc></url>
+<url><loc>/reference/protocell_simulation.html</loc></url>
+<url><loc>/reference/replicate_molecules.html</loc></url>
+<url><loc>/reference/shannon_entropy.html</loc></url>
+<url><loc>/reference/simulate_abiogenesis.html</loc></url>
+<url><loc>/reference/summarize_molecules.html</loc></url>
+</urlset>
+

@@ -1,0 +1,11 @@
+pandoc: '3.2'
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  1. index: 1. index.html
+  2. getting-started: 2. getting-started.html
+  3. molecular-evolution: 3. molecular-evolution.html
+  4. diversity-metrics: 4. diversity-metrics.html
+  5. protocells: 5. protocells.html
+  6. autocatalytic-networks: 6. autocatalytic-networks.html
+last_built: 2026-05-30T16:20Z

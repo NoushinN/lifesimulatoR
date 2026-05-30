@@ -1,0 +1,21 @@
+#' Evolve one molecular generation
+#'
+#' Applies one simplified evolutionary step to a molecular population,
+#' typically combining replication, mutation, and selection.
+#'
+#' @param population Molecular population to evolve.
+#' @param mutation_rate Probability of mutation.
+#' @param selection_strength Strength of selection.
+#'
+#' @return An updated molecular population.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 20, seed = 123)
+#' next_pool <- evolve_generation(
+#'   pool,
+#'   mutation_rate = 0.02,
+#'   selection_strength = 1
+#' )
+#' head(next_pool)
+#'
+#' @export

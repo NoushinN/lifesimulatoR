@@ -1,0 +1,230 @@
+# Protocell Dynamics with `lifesimulatoR`
+
+A **protocell** is a simplified model of a primitive cell-like compartment. In origin-of-life research, protocells are important because compartments can separate an internal chemical system from the external environment. This separation may help maintain local concentrations, protect molecular systems, and allow selection to act on groups of molecules rather than only on individual molecules.
+
+Modern cells use membranes, metabolism, enzymes, genetic information, and highly regulated internal systems. Protocells are much simpler. They may be imagined as primitive compartments that can grow, lose material, and divide.
+
+In `lifesimulatoR`, protocells are represented using a simplified educational model. The goal is not to reproduce real prebiotic chemistry, but to help users explore the basic logic of compartmentalization, growth, leakage, and division.
+
+```{r load-package}
+library(lifesimulatoR)
+```
+
+# Why protocells matter
+
+Before life could evolve into modern cells, early molecular systems likely needed some kind of boundary. Without compartments, useful molecules may diffuse away into the environment. With compartments, molecules can remain close together, interact repeatedly, and potentially be inherited together when the compartment divides.
+
+Protocells are therefore important because they help connect chemistry with biology. They introduce the idea of **individuality**: a protocell can be treated as a unit that grows, changes, and reproduces.
+
+This gives rise to several important questions:
+
+* Can a protocell grow and divide without modern biological machinery?
+* Can useful internal molecules be retained long enough to matter?
+* Can daughter protocells inherit useful internal chemistry?
+* Can protocells compete for resources?
+* How much leakage is too much?
+
+The model in this package does not answer these questions chemically, but it provides a simple simulation framework for discussing them.
+
+# The protocell model in `lifesimulatoR`
+
+The function `protocell_simulation()` simulates a simple population of protocells. Each protocell has an internal abundance-like value. This value can grow, leak away, and trigger division when it passes a threshold.
+
+The model includes three basic processes:
+
+1. **Growth**: protocells gain internal abundance.
+2. **Leakage**: protocells lose some internal abundance over time.
+3. **Division**: protocells divide when internal abundance reaches a threshold.
+
+# Running a basic protocell simulation
+
+```{r basic-protocell}
+cells <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.2,
+  division_threshold = 10,
+  leakage_rate = 0.03,
+  seed = 123
+)
+
+head(cells)
+tail(cells)
+```
+
+The output is a tibble with one row per time step. It tracks how the protocell population changes through time.
+
+Typical output columns include:
+
+* `step`: simulation time step.
+* `n_cells`: number of protocells.
+* `mean_abundance`: average internal abundance across protocells.
+* `max_abundance`: maximum internal abundance in the population.
+
+# Understanding the parameters
+
+The function has several important parameters:
+
+* `n_cells`: the initial number of protocell-like compartments.
+* `steps`: the number of time steps in the simulation.
+* `growth_rate`: how quickly internal abundance increases.
+* `division_threshold`: the abundance level at which protocells divide.
+* `leakage_rate`: the fraction of abundance lost at each step.
+* `seed`: optional random seed for reproducibility.
+
+These parameters represent simplified biological and chemical ideas. For example, `growth_rate` may represent accumulation of internal molecules, while `leakage_rate` may represent loss through an imperfect membrane.
+
+# Growth and leakage
+
+The model includes two opposing processes. Growth increases internal abundance, while leakage decreases it.
+
+This captures a simple tension often discussed in protocell models. A protocell needs to retain useful molecules, but early membranes may have been leaky. Some leakage may also be useful if it allows exchange with the environment. A completely sealed protocell may not be able to obtain new material, while a very leaky protocell may not be able to maintain internal chemistry.
+
+# Division
+
+When a protocell reaches the division threshold, it splits into daughter protocells. This creates a simple population dynamic. The number of protocells may increase if growth is strong enough relative to leakage.
+
+Division also changes how internal material is distributed. In the toy model, abundance is split between daughter protocells. In real protocell research, this raises questions about inheritance: if useful molecules exist inside a protocell, are they passed on to daughter compartments?
+
+# Plotting the result
+
+The package includes `plot_simulation()` for quick visualization.
+
+```{r plot-cells}
+plot_simulation(cells, x = "step", y = "n_cells")
+```
+
+This plot shows how the number of protocells changes through time.
+
+We can also plot mean internal abundance:
+
+```{r plot-abundance}
+plot_simulation(cells, x = "step", y = "mean_abundance")
+```
+
+Together, these plots help show whether protocells are growing, dividing, or stabilizing.
+
+# Experiment 1: Low leakage versus high leakage
+
+Membrane stability is an important concept in protocell research. A very leaky protocell may not be able to maintain internal chemistry. A perfectly sealed protocell may be too isolated from its environment. A useful protocell likely needs a balance between retention and exchange.
+
+```{r leakage-comparison}
+low_leakage <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.2,
+  division_threshold = 10,
+  leakage_rate = 0.01,
+  seed = 123
+)
+
+high_leakage <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.2,
+  division_threshold = 10,
+  leakage_rate = 0.15,
+  seed = 123
+)
+
+head(low_leakage)
+head(high_leakage)
+```
+
+This comparison can support a classroom discussion about membrane permeability. In real origin-of-life research, protocell membranes must allow some materials to enter while still retaining useful molecules.
+
+# Experiment 2: Changing the division threshold
+
+The `division_threshold` controls how large or abundant a protocell must become before dividing. A low threshold may lead to frequent division. A high threshold may delay division or prevent it altogether.
+
+```{r threshold-comparison}
+low_threshold <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.2,
+  division_threshold = 5,
+  leakage_rate = 0.03,
+  seed = 123
+)
+
+high_threshold <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.2,
+  division_threshold = 20,
+  leakage_rate = 0.03,
+  seed = 123
+)
+
+head(low_threshold)
+head(high_threshold)
+```
+
+This simple parameter helps demonstrate that reproduction-like behaviour depends on physical constraints. A system must grow enough to divide, but division also redistributes internal material among daughter protocells.
+
+# Experiment 3: Changing the growth rate
+
+The `growth_rate` parameter controls how quickly protocells accumulate internal abundance.
+
+```{r growth-rate-comparison}
+slow_growth <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.05,
+  division_threshold = 10,
+  leakage_rate = 0.03,
+  seed = 123
+)
+
+fast_growth <- protocell_simulation(
+  n_cells = 20,
+  steps = 100,
+  growth_rate = 0.4,
+  division_threshold = 10,
+  leakage_rate = 0.03,
+  seed = 123
+)
+
+head(slow_growth)
+head(fast_growth)
+```
+
+If growth is too slow, protocells may not reach the division threshold. If growth is strong enough, protocell numbers may increase rapidly.
+
+# Conceptual interpretation
+
+This model helps illustrate several key ideas:
+
+1. Compartments create individuality.
+2. Growth can increase the amount of material inside compartments.
+3. Leakage can reduce internal material.
+4. Division allows compartment populations to expand.
+5. Selection could eventually act on protocell-level traits.
+
+In this model, protocell success depends on the balance between growth, leakage, and division. If growth is strong and leakage is modest, protocell numbers may increase. If leakage is too strong or the division threshold is too high, the system may grow slowly or fail to divide.
+
+The important teaching point is that early life-like systems likely required coordination between internal chemistry and physical boundaries. A protocell is not just a bag of molecules; it is a structure that may allow molecular systems to persist, interact, and reproduce as a group.
+
+# Educational use
+
+This vignette can be used in class to ask questions such as:
+
+* What happens if leakage is too high?
+* What happens if the division threshold is too low?
+* How does growth rate affect population size?
+* What parameter combinations allow protocells to persist?
+* What would need to be added to make the model more chemically realistic?
+* How could selection act on protocells rather than only on molecules?
+
+# Suggested exercises
+
+1. Increase `growth_rate` and observe how quickly cells divide.
+2. Increase `leakage_rate` and identify when population growth slows down.
+3. Change `division_threshold` and compare early versus delayed division.
+4. Plot `n_cells`, `mean_abundance`, and `max_abundance`.
+5. Discuss what real protocells would require that this model does not include.
+6. Extend the model by adding internal molecular diversity or competition between protocells.
+
+# Important limitation
+
+This is a simplified educational model. It does not simulate real lipid chemistry, membrane physics, molecular inheritance, metabolism, or genetic replication. Its purpose is to support conceptual understanding and experimentation with simple origin-of-life ideas.

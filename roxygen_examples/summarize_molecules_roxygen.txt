@@ -1,0 +1,13 @@
+#' Summarize a molecular population
+#'
+#' Produces summary statistics for a symbolic molecular population.
+#'
+#' @param molecules Molecular population to summarize.
+#'
+#' @return A data frame or list of summary statistics.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 50, seed = 123)
+#' summarize_molecules(pool)
+#'
+#' @export

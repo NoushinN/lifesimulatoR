@@ -1,0 +1,22 @@
+#' Simulate a toy autocatalytic network
+#'
+#' Creates a simplified autocatalytic network model where molecular types can
+#' catalyze or reinforce one another through probabilistic interactions.
+#'
+#' @param n_types Number of molecular types in the network.
+#' @param steps Number of simulation steps.
+#' @param catalysis_probability Probability of catalytic interaction.
+#' @param seed Optional random seed for reproducibility.
+#'
+#' @return A list containing network information and a time series output.
+#'
+#' @examples
+#' net <- autocatalytic_network(
+#'   n_types = 8,
+#'   steps = 50,
+#'   catalysis_probability = 0.2,
+#'   seed = 123
+#' )
+#' head(net$time_series)
+#'
+#' @export

@@ -1,0 +1,13 @@
+#' Calculate molecular fitness
+#'
+#' Assigns simplified fitness values to symbolic molecules.
+#'
+#' @param molecules Molecular population or sequence vector.
+#'
+#' @return Fitness values for the molecules.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 10, seed = 123)
+#' molecule_fitness(pool)
+#'
+#' @export

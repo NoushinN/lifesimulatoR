@@ -1,0 +1,26 @@
+#' Simulate simplified abiogenesis dynamics
+#'
+#' Runs a toy origin-of-life simulation involving symbolic molecules,
+#' mutation, replication, selection, and population-level summaries.
+#'
+#' @param n_molecules Number of starting molecules.
+#' @param generations Number of generations to simulate.
+#' @param alphabet Character vector of molecular symbols.
+#' @param min_length Minimum molecular sequence length.
+#' @param max_length Maximum molecular sequence length.
+#' @param mutation_rate Probability of mutation.
+#' @param selection_strength Strength of selection.
+#' @param seed Optional random seed for reproducibility.
+#'
+#' @return A data frame containing simulation results by generation.
+#'
+#' @examples
+#' sim <- simulate_abiogenesis(
+#'   n_molecules = 100,
+#'   generations = 100,
+#'   mutation_rate = 0.02,
+#'   seed = 123
+#' )
+#' head(sim)
+#'
+#' @export

@@ -1,0 +1,14 @@
+#' Calculate Shannon entropy
+#'
+#' Calculates Shannon entropy for a molecular population or frequency
+#' distribution.
+#'
+#' @param x Molecular population or frequency vector.
+#'
+#' @return Numeric Shannon entropy value.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 50, seed = 123)
+#' shannon_entropy(pool)
+#'
+#' @export

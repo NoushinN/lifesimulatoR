@@ -1,0 +1,16 @@
+#' Mutate a molecular population
+#'
+#' Applies sequence-level mutations across a molecular population.
+#'
+#' @param population Molecular population to mutate.
+#' @param mutation_rate Probability of mutation.
+#' @param alphabet Character vector of possible symbols.
+#'
+#' @return A mutated molecular population.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 10, seed = 123)
+#' mutated <- mutate_population(pool, mutation_rate = 0.02)
+#' head(mutated)
+#'
+#' @export

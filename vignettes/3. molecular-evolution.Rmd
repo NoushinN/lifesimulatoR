@@ -1,0 +1,446 @@
+# Molecular Evolution with `lifesimulatoR`
+
+## Introduction
+
+One of the central questions in origin-of-life research is how non-living chemical systems could begin to exhibit life-like behaviour. Modern life relies on molecules that store information, make copies of themselves, mutate, and undergo selection. DNA and RNA perform these roles today, but early life-like systems may have been much simpler.
+
+In `lifesimulatoR`, molecular evolution is represented using symbolic sequences. A molecule may be represented by a sequence such as `"AUGCUA"`. The letters `A`, `U`, `G`, and `C` are inspired by RNA chemistry, but the model is conceptual rather than chemically realistic.
+
+The basic evolutionary workflow explored in this vignette is:
+
+1. Create a prebiotic molecular pool.
+2. Estimate molecular fitness.
+3. Replicate molecules.
+4. Introduce mutation.
+5. Apply selection.
+6. Repeat the process over many generations.
+7. Observe how the population changes.
+
+```{r load-package}
+library(lifesimulatoR)
+```
+
+# Create a prebiotic molecular pool
+
+Every evolutionary system requires a starting population. Before mutation, replication, or selection can occur, there must first be a collection of molecules capable of varying from one another.
+
+In origin-of-life research, this starting collection is often called a **prebiotic pool**.
+
+A prebiotic pool represents an early chemical environment containing many different molecules. In reality these molecules could include amino acids, nucleotides, peptides, lipids, and other organic compounds. In `lifesimulatoR`, they are represented as symbolic sequences.
+
+```{r create-pool}
+pool <- create_prebiotic_pool(
+  n_molecules = 20,
+  alphabet = c("A", "U", "G", "C"),
+  min_length = 5,
+  max_length = 12,
+  seed = 123
+)
+
+head(pool)
+```
+
+The output is a character vector where each element represents one symbolic molecule.
+
+## Why variation matters
+
+Variation is essential because selection can only act when differences already exist.
+
+If every molecule were identical, no molecule would have an advantage over any other.
+
+> Selection can only act on existing variation.
+
+## Understanding the parameters
+
+* `n_molecules`: number of molecules generated
+* `alphabet`: symbols used to construct molecules
+* `min_length`: minimum sequence length
+* `max_length`: maximum sequence length
+* `seed`: random seed for reproducibility
+
+```{r larger-pool}
+larger_pool <- create_prebiotic_pool(
+  n_molecules = 100,
+  alphabet = c("A", "U", "G", "C"),
+  min_length = 5,
+  max_length = 12,
+  seed = 123
+)
+
+length(larger_pool)
+```
+
+## Exploring the pool
+
+```{r pool-summary}
+length(pool)
+nchar(pool)
+```
+
+```{r pool-table}
+data.frame(
+  molecule = pool,
+  length = nchar(pool)
+)
+```
+
+## Why the starting pool matters
+
+The starting pool defines the raw material available to evolution.
+
+A larger and more diverse pool may contain more possible variants for selection to act upon. A smaller or less diverse pool may limit exploration of molecular possibilities.
+
+# Calculate molecular fitness
+
+Fitness is a simplified score representing how likely a molecule is to persist, replicate, or be selected.
+
+In real chemistry, this would depend on factors such as:
+
+* stability
+* catalytic activity
+* environmental conditions
+* energy availability
+
+```{r calculate-fitness}
+example_sequence <- "AUGCUA"
+
+molecule_fitness(example_sequence)
+```
+
+## Comparing fitness values
+
+```{r fitness-comparison}
+molecules <- c(
+  "AUGC",
+  "AAAAUUUU",
+  "GCGCGC",
+  "AUAUAUAUAUAU"
+)
+
+fitness <- molecule_fitness(molecules)
+
+data.frame(
+  molecule = molecules,
+  fitness = fitness
+)
+```
+
+Questions to consider:
+
+* Should longer molecules have higher fitness?
+* Should catalytic motifs increase fitness?
+* How should fitness be represented in origin-of-life simulations?
+
+# Mutation: changing molecular sequences
+
+Mutation introduces novelty into a molecular population.
+
+Without mutation, populations may replicate, but they cannot easily explore new sequence space.
+
+In origin-of-life models, mutation can represent:
+
+* copying errors
+* chemical modifications
+* structural rearrangements
+
+Mutation can be explored at two levels:
+
+1. Individual sequences
+2. Entire populations
+
+# Mutate one sequence
+
+```{r mutate-one-sequence}
+set.seed(2)
+
+original <- "AUGCAUGCAUGC"
+
+mutated <- mutate_sequence(
+  sequence = original,
+  alphabet = c("A", "U", "G", "C"),
+  mutation_rate = 0.2
+)
+
+data.frame(
+  original = original,
+  mutated = mutated
+)
+```
+
+A mutation rate of `0.2` means each position has a relatively high chance of being altered.
+
+# Low versus high mutation rate
+
+```{r mutation-rate-comparison}
+set.seed(3)
+
+low_mutation <- mutate_sequence(
+  sequence = "AUGCAUGCAUGC",
+  alphabet = c("A", "U", "G", "C"),
+  mutation_rate = 0.01
+)
+
+set.seed(3)
+
+high_mutation <- mutate_sequence(
+  sequence = "AUGCAUGCAUGC",
+  alphabet = c("A", "U", "G", "C"),
+  mutation_rate = 0.40
+)
+
+data.frame(
+  mutation_rate = c(0.01, 0.40),
+  mutated_sequence = c(low_mutation, high_mutation)
+)
+```
+
+A low mutation rate usually preserves the original sequence.
+
+A high mutation rate introduces more variation, but excessive mutation may disrupt useful molecular patterns.
+
+> Variation is necessary for evolution, but too much variation can prevent useful information from being preserved.
+
+# Mutate a population
+
+```{r mutate-population}
+set.seed(4)
+
+molecules <- c("AUGC", "UUUU", "GCGC", "AAAA")
+
+mutated_population <- mutate_population(
+  molecules = molecules,
+  mutation_rate = 0.2
+)
+
+data.frame(
+  before = molecules,
+  after = mutated_population
+)
+```
+
+Some molecules remain unchanged, while others accumulate mutations.
+
+# Replication and selection
+
+Replication allows successful molecules to become more common.
+
+Selection means that molecules with higher fitness have a greater chance of contributing to future generations.
+
+```{r replicate-example}
+molecules <- c(
+  "AUGC",
+  "AAAAUUUU",
+  "GCGCGC",
+  "AUAUAUAUAUAU"
+)
+
+next_generation <- replicate_molecules(
+  molecules = molecules,
+  n_molecules = 20,
+  selection_strength = 1
+)
+
+next_generation
+```
+
+## Selection strength
+
+The parameter `selection_strength` controls how strongly fitness influences replication.
+
+* `0` = neutral drift
+* low values = weak selection
+* high values = strong selection
+
+## Compare neutral drift and selection
+
+```{r compare-neutral-selection}
+set.seed(1)
+
+neutral <- replicate_molecules(
+  molecules = molecules,
+  n_molecules = 100,
+  selection_strength = 0
+)
+
+set.seed(1)
+
+selected <- replicate_molecules(
+  molecules = molecules,
+  n_molecules = 100,
+  selection_strength = 2
+)
+
+table(neutral)
+table(selected)
+```
+
+As selection strength increases, fitter molecules become more common.
+
+# Evolve one generation
+
+The function `evolve_generation()` combines:
+
+* fitness
+* replication
+* mutation
+* selection
+
+into a single evolutionary step.
+
+```{r evolve-one}
+next_generation <- evolve_generation(
+  molecules = pool,
+  mutation_rate = 0.02,
+  selection_strength = 1
+)
+
+head(next_generation)
+```
+
+One generation illustrates the mechanism. Many generations reveal longer-term trends.
+
+# Simulate abiogenesis-like molecular evolution
+
+The main simulation function is `simulate_abiogenesis()`.
+
+It starts with a random molecular pool and repeatedly applies:
+
+1. replication
+2. mutation
+3. selection
+
+over many generations.
+
+```{r full-simulation}
+sim <- simulate_abiogenesis(
+  n_molecules = 100,
+  generations = 200,
+  mutation_rate = 0.01,
+  selection_strength = 1,
+  seed = 10
+)
+
+head(sim)
+tail(sim)
+```
+
+The output is a tibble summarizing population-level changes through time.
+
+# Visualize results
+
+## Plot mean fitness
+
+```{r plot-fitness}
+plot_simulation(
+  sim,
+  x = "generation",
+  y = "mean_fitness"
+)
+```
+
+## Plot diversity
+
+```{r plot-diversity}
+plot_simulation(
+  sim,
+  x = "generation",
+  y = "diversity"
+)
+```
+
+Plots can help answer questions such as:
+
+* Does mean fitness increase?
+* Does diversity increase or decrease?
+* Does the population stabilize?
+* Does selection lead to dominance by certain molecule types?
+
+# Parameter experiments
+
+## Experiment 1: mutation rate
+
+```{r mutation-experiment}
+low_mutation <- simulate_abiogenesis(
+  n_molecules = 100,
+  generations = 100,
+  mutation_rate = 0.005,
+  selection_strength = 1,
+  seed = 123
+)
+
+high_mutation <- simulate_abiogenesis(
+  n_molecules = 100,
+  generations = 100,
+  mutation_rate = 0.10,
+  selection_strength = 1,
+  seed = 123
+)
+```
+
+Compare the results.
+
+Questions:
+
+* Which simulation produces more diversity?
+* Which preserves information more effectively?
+
+## Experiment 2: selection strength
+
+```{r selection-experiment}
+weak_selection <- simulate_abiogenesis(
+  n_molecules = 100,
+  generations = 100,
+  mutation_rate = 0.02,
+  selection_strength = 0.2,
+  seed = 123
+)
+
+strong_selection <- simulate_abiogenesis(
+  n_molecules = 100,
+  generations = 100,
+  mutation_rate = 0.02,
+  selection_strength = 3,
+  seed = 123
+)
+```
+
+Questions:
+
+* Does stronger selection increase fitness?
+* Does stronger selection reduce diversity?
+
+# Interpretation
+
+This tutorial demonstrates a simplified model of molecular evolution.
+
+Key concepts include:
+
+1. Variation
+2. Fitness
+3. Replication
+4. Mutation
+5. Selection
+6. Population-level change
+
+The model is intentionally simple. It does not simulate:
+
+* real chemistry
+* RNA folding
+* thermodynamics
+* energy flow
+* detailed reaction kinetics
+
+Instead, it provides an educational framework for exploring how life-like evolutionary dynamics may emerge.
+
+# Suggested exercises
+
+1. Run simulations with mutation rates of 0, 0.01, 0.05, and 0.20.
+2. Compare weak and strong selection.
+3. Change the alphabet used to generate molecules.
+4. Compare short and long molecule populations.
+5. Modify the fitness function.
+6. Compare neutral drift and selection.
+7. Discuss what would be needed to make the model chemically realistic.
+8. Compare molecular evolution with protocell models.
+9. Compare molecular evolution with autocatalytic network models.
+10. Debate whether replication-first, metabolism-first, or compartment-first models provide the best explanation for the origin of life.

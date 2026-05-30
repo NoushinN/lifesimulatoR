@@ -1,0 +1,150 @@
+# Getting Started with `lifesimulatoR`
+
+## Overview
+
+`lifesimulatoR` provides simple simulation tools for exploring how life-like behaviour might emerge from non-living chemical systems.
+
+The package does not attempt to reproduce real prebiotic chemistry in full detail. Instead, it uses symbolic molecules and toy models to make key origin-of-life ideas easier to teach, visualize, and explore.
+
+The package can be used to ask conceptual questions such as:
+
+* What happens when molecules replicate with errors?
+* How can mutation and selection change a population?
+* How can molecular diversity be measured?
+* How might protocell-like compartments grow and divide?
+* How can autocatalytic networks create self-reinforcing dynamics?
+
+## Load the package
+
+```{r load-package}
+library(lifesimulatoR)
+```
+
+## Basic workflow
+
+A typical workflow begins with an initial pool of symbolic molecules. These molecules can then be mutated, replicated, selected, summarized, and plotted.
+
+```{r create-pool}
+pool <- create_prebiotic_pool(
+  n_molecules = 100,
+  alphabet = c("A", "U", "G", "C"),
+  min_length = 5,
+  max_length = 20,
+  seed = 123
+)
+
+head(pool)
+```
+
+The exact structure of the output depends on the current implementation of the package, but the goal is to represent a population of simple molecular sequences.
+
+## Run a complete molecular evolution simulation
+
+The easiest entry point is `simulate_abiogenesis()`.
+
+```{r molecular-simulation}
+result <- simulate_abiogenesis(
+  n_molecules = 50,
+  generations = 30,
+  mutation_rate = 0.02,
+  selection_strength = 1,
+  seed = 1
+)
+
+head(result)
+```
+
+This simulation represents a simplified evolutionary process. Molecules vary, mutate, replicate, and undergo selection over repeated generations.
+
+## Plot simulation results
+
+```{r plot-simulation}
+plot_simulation(result, x = "generation", y = "mean_fitness")
+```
+
+The plot is intended to help users see patterns over time, such as changes in fitness, diversity, abundance, or other simulation outputs.
+
+If you are unsure which columns are available, inspect the result first:
+
+```{r inspect-result}
+names(result)
+```
+
+Then choose suitable variables for plotting.
+
+## Explore molecular diversity
+
+Molecular diversity is important because diverse systems can explore more possible structures and interactions.
+
+```{r diversity}
+summary_stats <- summarize_molecules(pool)
+
+summary_stats
+
+pool_counts <- table(pool)
+
+shannon_entropy(as.numeric(pool_counts))
+```
+
+These functions help summarize a molecular population and estimate its diversity.
+
+## Autocatalytic networks
+
+Autocatalytic networks are systems where molecules help produce other molecules in the same system. They are useful for exploring how chemical networks may become self-reinforcing.
+
+```{r autocatalytic-network}
+net <- autocatalytic_network(
+  n_types = 6,
+  steps = 20,
+  catalysis_probability = 0.2,
+  seed = 2
+)
+
+head(net$time_series)
+```
+
+The returned object includes a time series of molecular abundances and a catalysis matrix.
+
+```{r autocatalytic-matrix}
+net$catalysis_matrix
+```
+
+## Protocell dynamics
+
+Protocells are simplified cell-like compartments. They are useful for exploring how compartmentalization, growth, leakage, and division may matter in origin-of-life scenarios.
+
+```{r protocells}
+cells <- protocell_simulation(
+  n_cells = 10,
+  steps = 30,
+  growth_rate = 0.2,
+  division_threshold = 10,
+  leakage_rate = 0.03,
+  seed = 3
+)
+
+head(cells)
+```
+
+You can plot protocell population size over time:
+
+```{r plot-protocells}
+plot_simulation(cells, x = "step", y = "n_cells")
+```
+
+## What to read next
+
+After this introduction, the following tutorials provide more detail:
+
+* `molecular-evolution.Rmd`
+* `diversity-metrics.Rmd`
+* `protocells.Rmd`
+* `autocatalytic-networks.Rmd`
+
+These concept tutorials explain the scientific ideas and show how the functions can be used together.
+
+## Important interpretation note
+
+The simulations in `lifesimulatoR` are educational. A result showing increasing fitness, diversity, or complexity should not be interpreted as proof of a specific origin-of-life pathway.
+
+Instead, the simulations are best used as conceptual demonstrations of mechanisms often discussed in origin-of-life research, including mutation, selection, replication, compartmentalization, autocatalysis, and emergence.

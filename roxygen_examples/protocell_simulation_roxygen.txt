@@ -1,0 +1,23 @@
+#' Simulate protocell growth and division
+#'
+#' Simulates a simplified protocell population with growth, leakage, and
+#' division when internal abundance exceeds a threshold.
+#'
+#' @param n_cells Initial number of protocells.
+#' @param steps Number of simulation steps.
+#' @param growth_rate Growth rate of internal abundance.
+#' @param division_threshold Abundance threshold for division.
+#' @param leakage_rate Fraction of abundance lost per step.
+#' @param seed Optional random seed for reproducibility.
+#'
+#' @return A data frame describing protocell dynamics over time.
+#'
+#' @examples
+#' cells <- protocell_simulation(
+#'   n_cells = 20,
+#'   steps = 100,
+#'   seed = 123
+#' )
+#' head(cells)
+#'
+#' @export

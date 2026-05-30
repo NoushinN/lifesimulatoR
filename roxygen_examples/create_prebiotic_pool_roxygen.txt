@@ -1,0 +1,23 @@
+#' Create a symbolic prebiotic molecular pool
+#'
+#' Generates an initial population of symbolic molecules represented as
+#' character sequences.
+#'
+#' @param n_molecules Number of molecules to create.
+#' @param alphabet Character vector of possible symbols.
+#' @param min_length Minimum sequence length.
+#' @param max_length Maximum sequence length.
+#' @param seed Optional random seed for reproducibility.
+#'
+#' @return A vector or data frame representing a molecular population.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(
+#'   n_molecules = 20,
+#'   min_length = 5,
+#'   max_length = 12,
+#'   seed = 123
+#' )
+#' head(pool)
+#'
+#' @export

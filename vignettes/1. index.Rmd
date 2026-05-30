@@ -1,0 +1,246 @@
+# Welcome to `lifesimulatoR`
+
+`lifesimulatoR` is an educational R package for exploring origin-of-life concepts using simplified computational simulations.
+
+The package focuses on symbolic molecules, mutation, selection, replication, autocatalytic networks, protocell-like growth, and diversity metrics. It is designed for teaching, visualization, science communication, and conceptual exploration.
+
+The models are intentionally simplified. They are not chemically complete models of abiogenesis. Instead, they provide a clear way to explore mechanisms often discussed in origin-of-life research.
+
+# What the package helps explore
+
+`lifesimulatoR` can be used to ask questions such as:
+
+* How can mutation and selection change a molecular population?
+* What happens when molecules replicate with errors?
+* How can molecular diversity be summarized?
+* How might protocell-like compartments grow, leak, and divide?
+* How can autocatalytic networks create self-reinforcing dynamics?
+* How do toy models help clarify origin-of-life hypotheses?
+
+# Recommended learning path
+
+If you are new to the package, start with the tutorials in this order:
+
+1. `getting-started.Rmd`
+2. `molecular-evolution.Rmd`
+3. `diversity-metrics.Rmd`
+4. `protocells.Rmd`
+5. `autocatalytic-networks.Rmd`
+
+This order moves from the basic package workflow to molecular evolution, diversity metrics, compartmentalization, and network-level emergence.
+
+# Concept tutorials
+
+These tutorials focus on scientific ideas and workflows rather than individual functions.
+
+## Getting Started
+
+**File:** `getting-started.Rmd`
+
+This tutorial introduces the package, its purpose, and the core workflow.
+
+Topics covered:
+
+* Loading the package
+* Creating a prebiotic molecular pool
+* Running a basic simulation
+* Plotting results
+* Exploring protocells and autocatalytic networks
+
+Key functions:
+
+```r
+library(lifesimulatoR)
+
+create_prebiotic_pool()
+simulate_abiogenesis()
+plot_simulation()
+protocell_simulation()
+autocatalytic_network()
+```
+
+## Molecular Evolution
+
+**File:** `molecular-evolution.Rmd`
+
+This tutorial explains how symbolic molecular populations can mutate, replicate, and undergo selection.
+
+Topics covered:
+
+* Molecular populations
+* Symbolic RNA-like sequences
+* Mutation
+* Replication
+* Selection
+* Fitness landscapes
+* Multi-generation simulation
+
+Key functions:
+
+```r
+create_prebiotic_pool()
+molecule_fitness()
+replicate_molecules()
+mutate_sequence()
+mutate_population()
+evolve_generation()
+simulate_abiogenesis()
+plot_simulation()
+```
+
+## Diversity Metrics
+
+**File:** `diversity-metrics.Rmd`
+
+This tutorial explains how to summarize and interpret molecular diversity.
+
+Topics covered:
+
+* Molecular diversity
+* Shannon entropy
+* Population summaries
+* Mutation-selection balance
+* Diversity versus complexity
+
+Key functions:
+
+```r
+summarize_molecules()
+shannon_entropy()
+simulate_abiogenesis()
+plot_simulation()
+```
+
+## Protocells
+
+**File:** `protocells.Rmd`
+
+This tutorial introduces simplified protocell-like compartments.
+
+Topics covered:
+
+* Primitive compartmentalization
+* Growth
+* Leakage
+* Division
+* Population dynamics
+* Protocells as possible units of selection
+
+Key functions:
+
+```r
+protocell_simulation()
+plot_simulation()
+```
+
+## Autocatalytic Networks
+
+**File:** `autocatalytic-networks.Rmd`
+
+This tutorial introduces chemical networks where molecules help produce other molecules.
+
+Topics covered:
+
+* Catalysis
+* Reaction networks
+* Feedback loops
+* Self-sustaining systems
+* Emergence of system-level behaviour
+
+Key functions:
+
+```r
+autocatalytic_network()
+plot_simulation()
+```
+
+# Function help pages
+
+Individual function examples should live in the roxygen documentation inside the `R/` files, not as separate small vignettes. This keeps the vignette folder focused on larger conceptual tutorials.
+
+After adding roxygen comments and running:
+
+```r
+devtools::document()
+```
+
+users can access function help pages such as:
+
+```r
+?simulate_abiogenesis
+?protocell_simulation
+?autocatalytic_network
+?create_prebiotic_pool
+```
+
+# Main functions
+
+| Function                  | Purpose                                               |
+| ------------------------- | ----------------------------------------------------- |
+| `create_prebiotic_pool()` | Generate an initial symbolic molecular population     |
+| `molecule_fitness()`      | Estimate simple toy fitness values for molecules      |
+| `replicate_molecules()`   | Replicate molecules based on fitness or abundance     |
+| `mutate_sequence()`       | Mutate one molecular sequence                         |
+| `mutate_population()`     | Mutate a population of molecules                      |
+| `evolve_generation()`     | Run one evolutionary generation                       |
+| `simulate_abiogenesis()`  | Run a multi-generation molecular evolution simulation |
+| `shannon_entropy()`       | Calculate diversity or uncertainty in a population    |
+| `summarize_molecules()`   | Summarize molecular populations                       |
+| `protocell_simulation()`  | Simulate protocell-like growth, leakage, and division |
+| `autocatalytic_network()` | Simulate a toy autocatalytic network                  |
+| `plot_simulation()`       | Plot simulation outputs                               |
+
+# Scientific background
+
+The package draws inspiration from several major origin-of-life research themes:
+
+* Prebiotic chemistry
+* Molecular self-replication
+* Darwinian evolution
+* RNA-world hypotheses
+* Autocatalytic set theory
+* Protocell models
+* Complexity and emergence
+* Mutation-selection balance
+* Compartmentalization
+* Network-first and metabolism-first perspectives
+
+The simulations are intentionally simplified and should be viewed as educational tools rather than mechanistic models of abiogenesis.
+
+# Suggested use in teaching
+
+`lifesimulatoR` can support classroom or workshop discussions by allowing users to modify parameters and observe outcomes.
+
+Example teaching questions:
+
+* What happens when mutation rate increases?
+* What happens when selection becomes stronger?
+* What happens when leakage is too high in protocells?
+* What happens when catalytic networks become more connected?
+* Can a system become more organized while becoming less diverse?
+* What assumptions are hidden inside each model?
+
+# Future development
+
+Potential future modules include:
+
+* RNA-world simulations
+* Lipid vesicle formation
+* Metabolism-first models
+* Hydrothermal vent environments
+* Energy-gradient simulations
+* Reaction-diffusion systems
+* Information-theoretic complexity metrics
+* Interactive Shiny applications
+* Animated visualizations
+* Comparative origin-of-life frameworks
+
+# Citation
+
+If you use `lifesimulatoR` in teaching materials, presentations, workshops, or research projects, please cite the package and provide a link to the GitHub repository.
+
+# License
+
+MIT License
+
+Copyright (c) 2026 Noushin Nabavi

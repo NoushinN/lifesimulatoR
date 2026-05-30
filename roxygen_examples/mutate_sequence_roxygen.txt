@@ -1,0 +1,14 @@
+#' Mutate a symbolic molecular sequence
+#'
+#' Introduces random substitutions into a single symbolic sequence.
+#'
+#' @param sequence A character sequence.
+#' @param mutation_rate Probability of mutation.
+#' @param alphabet Character vector of possible symbols.
+#'
+#' @return A mutated sequence.
+#'
+#' @examples
+#' mutate_sequence("AUGCUA", mutation_rate = 0.1)
+#'
+#' @export

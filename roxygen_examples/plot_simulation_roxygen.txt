@@ -1,0 +1,15 @@
+#' Plot simulation output
+#'
+#' Creates a simple visualization of a lifesimulatoR simulation result.
+#'
+#' @param data Simulation output data.
+#' @param x Optional x-axis column name.
+#' @param y Optional y-axis column name.
+#'
+#' @return A ggplot object.
+#'
+#' @examples
+#' sim <- simulate_abiogenesis(n_molecules = 50, generations = 20, seed = 123)
+#' plot_simulation(sim)
+#'
+#' @export

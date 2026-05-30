@@ -1,0 +1,235 @@
+# Autocatalytic Networks with `lifesimulatoR`
+
+This tutorial introduces autocatalytic networks. In origin-of-life research, autocatalysis is important because it offers a possible route from ordinary chemistry to self-sustaining chemical organization.
+
+A catalyst is something that helps a reaction occur more easily without being consumed by the reaction. An **autocatalytic system** is one in which the products of reactions help produce more of themselves, either directly or indirectly. In a network, molecule A might help produce molecule B, molecule B might help produce molecule C, and molecule C might help produce molecule A. Together, the system can become self-reinforcing.
+
+This idea matters because early life may not have begun with a single perfect self-replicator. It may have involved networks of mutually reinforcing chemical reactions. Life is not only about individual molecules; life also depends on systems of interaction. Modern cells contain large networks of reactions, enzymes, metabolites, and feedback loops. Autocatalytic network models provide a simplified way to explore how self-maintaining organization could emerge before modern biology.
+
+```{r load-package}
+library(lifesimulatoR)
+```
+
+# What is an autocatalytic network?
+
+An autocatalytic network is a system in which molecules help produce other molecules in the same system. Instead of one molecule simply copying itself, a group of molecules collectively supports its own production.
+
+This shifts attention from individual molecules to systems of interactions. In such systems, persistence may emerge from the network as a whole.
+
+This is different from a simple replication-first model, where the main focus is on a molecule that can copy itself.
+
+# Simulating a toy autocatalytic network
+
+`lifesimulatoR` includes a simplified autocatalytic network model. The main function is `autocatalytic_network()`.
+
+```{r basic-network}
+network <- autocatalytic_network(
+  n_types = 8,
+  steps = 50,
+  catalysis_probability = 0.2,
+  seed = 123
+)
+
+names(network)
+```
+
+The function creates a toy system with a number of molecular types and probabilistic catalytic relationships between them.
+
+The returned object includes two main components:
+
+* `time_series`: a tibble showing molecular abundances over time.
+* `catalysis_matrix`: a matrix showing which molecular types catalyze others.
+
+```{r inspect-network}
+head(network$time_series)
+
+network$catalysis_matrix
+```
+
+# Understanding the parameters
+
+The main arguments are:
+
+* `n_types`: the number of molecular types in the system.
+* `steps`: the number of simulation steps.
+* `catalysis_probability`: the probability that one molecule type catalyzes another.
+* `seed`: an optional random seed for reproducibility.
+
+The `catalysis_probability` parameter is especially important. If this value is very low, few catalytic connections form. If it is higher, the network becomes more connected.
+
+In origin-of-life theory, the emergence of a sufficiently connected catalytic network may be a key transition.
+
+# Why network connectivity matters
+
+A set of isolated molecules may react occasionally, but it may not sustain itself. A connected network can create feedback. Once feedback exists, some molecular systems may persist longer, grow faster, or resist disappearance.
+
+The simplified question is:
+
+> At what point does a random chemical network become organized enough to support self-sustaining dynamics?
+
+This is not only a chemistry question. It is also a systems question. The structure of the network matters.
+
+# Time series output
+
+The `time_series` output can be used to track how the system changes over time.
+
+```{r time-series-output}
+head(network$time_series)
+
+summary(network$time_series)
+```
+
+Depending on the simulation settings, the time series may show whether some molecule types become more abundant than others.
+
+# Plotting one molecule type
+
+We can use `plot_simulation()` to visualize the abundance of one molecule type through time.
+
+```{r plot-one}
+m1 <- subset(network$time_series, molecule == "M1")
+
+plot_simulation(m1, x = "step", y = "abundance")
+```
+
+This plot shows how the abundance of molecule `M1` changes through the simulation.
+
+# Summarizing final abundances
+
+It is often useful to look at the final simulation step.
+
+```{r final-abundances}
+final_step <- max(network$time_series$step)
+
+final_abundances <- subset(network$time_series, step == final_step)
+
+final_abundances
+```
+
+This output shows which molecule types are most abundant at the end of the simulation.
+
+# Experiment 1: Low versus high catalysis probability
+
+We can compare two networks: one with sparse catalytic connections and one with more frequent catalytic connections.
+
+```{r catalysis-comparison}
+sparse_network <- autocatalytic_network(
+  n_types = 8,
+  steps = 50,
+  catalysis_probability = 0.05,
+  seed = 123
+)
+
+dense_network <- autocatalytic_network(
+  n_types = 8,
+  steps = 50,
+  catalysis_probability = 0.4,
+  seed = 123
+)
+
+head(sparse_network$time_series)
+head(dense_network$time_series)
+```
+
+In a sparse network, many molecular types may have few or no catalytic relationships. In a denser network, feedback loops are more likely. This can make the system more dynamic and potentially more self-reinforcing.
+
+# Experiment 2: Compare final abundance patterns
+
+```{r compare-final-abundances}
+sparse_final <- subset(
+  sparse_network$time_series,
+  step == max(sparse_network$time_series$step)
+)
+
+dense_final <- subset(
+  dense_network$time_series,
+  step == max(dense_network$time_series$step)
+)
+
+sparse_final
+dense_final
+```
+
+This comparison helps illustrate how changing network connectivity may affect final molecular abundance.
+
+# Experiment 3: Increasing the number of molecular types
+
+A larger system may allow more possible catalytic relationships.
+
+```{r larger-network}
+larger_network <- autocatalytic_network(
+  n_types = 15,
+  steps = 50,
+  catalysis_probability = 0.2,
+  seed = 123
+)
+
+head(larger_network$time_series)
+```
+
+As `n_types` increases, the number of possible relationships grows. This can make the network more complex, even if the probability of each individual catalytic relationship stays the same.
+
+# Teaching interpretation
+
+This model can be used to introduce the following ideas:
+
+* Mutual reinforcement
+* Chemical networks
+* Feedback loops
+* Collective self-maintenance
+* Emergence of system-level behaviour
+* Network connectivity
+* System-level selection
+
+The key teaching point is that an origin-of-life model does not always need to begin with a single molecule that copies itself perfectly. It can also begin with interacting systems that collectively sustain themselves.
+
+# Autocatalysis and the origin of life
+
+Autocatalytic networks are relevant to several origin-of-life hypotheses. Some theories suggest that life began not with a single self-replicating molecule, but with a network of mutually supporting reactions. This is often associated with metabolism-first or network-first perspectives.
+
+In this view, the earliest life-like systems may have been chemical networks that could maintain themselves, process energy, and generate more components of the same network. Genetic replication may have become dominant later.
+
+This contrasts with RNA World models, where the focus is often on molecules capable of both storing information and catalyzing reactions.
+
+These views are not necessarily mutually exclusive. A mature origin-of-life theory may need to explain how networks, compartments, energy flows, and information-carrying molecules became coupled.
+
+# What this model includes and excludes
+
+This simplified model includes:
+
+* Molecular types
+* Probabilistic catalytic relationships
+* Time evolution
+* Network-level behaviour
+* Abundance changes
+
+It does not include:
+
+* Real reaction kinetics
+* Thermodynamic constraints
+* Spatial structure
+* Energy gradients
+* Detailed molecular chemistry
+* Realistic reaction pathways
+
+For teaching purposes, this limitation is useful. It allows students to focus on the network concept before adding chemical detail.
+
+# Interpretation
+
+The key idea is that autocatalytic networks shift the focus from individual molecules to systems of interaction. A molecule may not be impressive by itself, but a network of molecules can produce feedback, persistence, and organization.
+
+This is one reason autocatalysis is such an important idea in origin-of-life research. It provides a possible bridge between random chemistry and the organized, self-maintaining systems seen in living organisms.
+
+# Suggested exercises
+
+1. Run the model with different values of `catalysis_probability`.
+2. Increase `n_types` and observe whether larger systems behave differently.
+3. Compare short simulations and long simulations.
+4. Plot several molecule types and compare their abundance trajectories.
+5. Discuss how autocatalytic networks differ from simple molecular replication.
+6. Propose one additional feature that would make the model more chemically realistic.
+7. Discuss how autocatalytic networks might interact with protocells.
+8. Compare network-first and replication-first views of the origin of life.
+
+# Interpretation caution
+
+This is a conceptual network model, not a detailed chemical kinetics model. It is useful for exploring how feedback and catalytic relationships can produce system-level behaviour, but it should not be interpreted as a chemically realistic simulation of abiogenesis.

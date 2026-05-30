@@ -1,0 +1,16 @@
+#' Replicate molecules
+#'
+#' Replicates symbolic molecules according to simplified fitness or selection
+#' rules.
+#'
+#' @param population Molecular population to replicate.
+#' @param selection_strength Strength of fitness-based selection.
+#'
+#' @return A replicated molecular population.
+#'
+#' @examples
+#' pool <- create_prebiotic_pool(n_molecules = 10, seed = 123)
+#' replicated <- replicate_molecules(pool, selection_strength = 1)
+#' head(replicated)
+#'
+#' @export

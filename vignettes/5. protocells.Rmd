@@ -1,3 +1,11 @@
+---
+title: "Protocell Dynamics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Diversity, Entropy, and Complexity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 # Protocell Dynamics with `lifesimulatoR`
 
 A **protocell** is a simplified model of a primitive cell-like compartment. In origin-of-life research, protocells are important because compartments can separate an internal chemical system from the external environment. This separation may help maintain local concentrations, protect molecular systems, and allow selection to act on groups of molecules rather than only on individual molecules.

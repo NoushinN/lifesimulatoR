@@ -1,3 +1,12 @@
+---
+title: "Diversity, Entropy, and Complexity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Diversity, Entropy, and Complexity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
 # Diversity and Complexity Metrics with `lifesimulatoR`
 
 ## Why diversity matters

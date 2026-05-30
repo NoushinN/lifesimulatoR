@@ -1,8 +1,12 @@
 Package: lifesimulatoR
 Title: Simple Origin of Life Simulations in R
 Version: 0.1.0
-Authors@R: 
-    person("Your", "Name", email = "your.email@example.com", role = c("aut", "cre"))
+Authors@R:
+    person(
+      given = "Noushin",
+      family = "Nabavi",
+      role = c("aut", "cre"),
+    )
 Description: Educational simulations for exploring origin-of-life concepts, including molecular populations, replication, mutation, selection, autocatalytic networks, and simple protocell dynamics.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -21,6 +25,6 @@ Suggests:
     rmarkdown
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/yourusername/lifesimulatoR
-BugReports: https://github.com/yourusername/lifesimulatoR/issues
+URL: https://github.com/NoushinN/lifesimulatoR
+BugReports: https://github.com/NoushinN/lifesimulatoR/issues
 Config/roxygen2/version: 8.0.0

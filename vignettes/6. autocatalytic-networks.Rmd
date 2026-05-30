@@ -1,3 +1,12 @@
+---
+title: "Autocatalytic Networks"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Diversity, Entropy, and Complexity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
 # Autocatalytic Networks with `lifesimulatoR`
 
 This tutorial introduces autocatalytic networks. In origin-of-life research, autocatalysis is important because it offers a possible route from ordinary chemistry to self-sustaining chemical organization.

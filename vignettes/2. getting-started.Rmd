@@ -1,3 +1,11 @@
+---
+title: "Getting Started with lifesimulatoR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with lifesimulatoR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 # Getting Started with `lifesimulatoR`
 
 ## Overview

@@ -40,17 +40,17 @@ Analysis tools:
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/yourusername/lifesimulatoR}
-  \item Report bugs at \url{https://github.com/yourusername/lifesimulatoR/issues}
+  \item \url{https://github.com/NoushinN/lifesimulatoR}
+  \item Report bugs at \url{https://github.com/NoushinN/lifesimulatoR/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Your Name \email{your.email@example.com}
+\strong{Maintainer}: Noushin Nabavi
 
 Authors:
 \itemize{
-  \item Your Name \email{your.email@example.com}
+  \item Noushin Nabavi
 }
 
 }

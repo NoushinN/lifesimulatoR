@@ -92,39 +92,101 @@
 <div class="section level1">
 <div class="page-header"><h1 id="lifesimulator">lifesimulatoR<a class="anchor" aria-label="anchor" href="#lifesimulator"></a>
 </h1></div>
+<p><a href="https://www.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R-4.3%2B-blue" alt="R"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT"></a> <a href="https://noushinn.github.io/lifesimulatoR/" class="external-link"><img src="https://img.shields.io/badge/Website-pkgdown-blue" alt="Package Website"></a> <a href="https://noushinn.github.io/lifesimulatoR-book/" class="external-link"><img src="https://img.shields.io/badge/Book-bookdown-orange" alt="Companion Book"></a> <a href="https://github.com/NoushinN/lifesimulatoR" class="external-link"><img src="https://img.shields.io/github/stars/NoushinN/lifesimulatoR?style=social" alt="GitHub stars"></a></p>
 <p><strong>lifesimulatoR</strong> is an educational R package for exploring origin-of-life concepts through simplified computational simulations.</p>
 <p>🧪 <strong>Status:</strong> Educational research package in active development.</p>
-<p>The package provides tools for studying molecular evolution, mutation, selection, autocatalytic networks, protocell dynamics, and emergent complexity in toy prebiotic systems. It is designed for students, instructors, science communicators, and researchers interested in computational approaches to abiogenesis and early evolution.</p>
-<hr>
+<p>The package provides tools for studying molecular evolution, mutation, selection, diversity, protocell dynamics, autocatalytic networks, and emergent complexity in toy prebiotic systems. It is designed for students, instructors, science communicators, and researchers interested in computational approaches to abiogenesis and early evolution.</p>
+<div class="section level2">
+<h2 id="companion-book">Companion Book<a class="anchor" aria-label="anchor" href="#companion-book"></a>
+</h2>
+<p>A theory-rich companion book is available online:</p>
+<p>📖 <strong>Online Book:</strong> <a href="https://noushinn.github.io/lifesimulatoR-book/" class="external-link uri">https://noushinn.github.io/lifesimulatoR-book/</a></p>
+<p>📚 <strong>Book Repository:</strong> <a href="https://github.com/NoushinN/lifesimulatoR-book" class="external-link uri">https://github.com/NoushinN/lifesimulatoR-book</a></p>
+<p>The companion book provides:</p>
+<ul>
+<li>Scientific background on origin-of-life research</li>
+<li>Explanations of major abiogenesis theories</li>
+<li>Conceptual models behind package functions</li>
+<li>Detailed examples and tutorials</li>
+<li>Interpretation of simulation results</li>
+<li>Classroom exercises and discussion questions</li>
+<li>Suggested readings from the scientific literature</li>
+</ul>
+<p>The package and book are designed to be used together, with the book providing the theoretical context and the package providing hands-on computational exploration.</p>
+</div>
 <div class="section level2">
 <h2 id="scientific-motivation">Scientific Motivation<a class="anchor" aria-label="anchor" href="#scientific-motivation"></a>
 </h2>
-<p><code>lifesimulatoR</code> explores several major origin-of-life research themes:</p>
+<p>One of the most important open questions in science is:</p>
+<blockquote>
+<p>How did life emerge from non-living matter?</p>
+</blockquote>
+<p>Researchers have proposed many possible pathways, including:</p>
 <ul>
-<li>Molecular evolution and replication</li>
-<li>Mutation and natural selection</li>
-<li>Information and diversity</li>
-<li>Protocell compartmentalization</li>
-<li>Autocatalytic networks</li>
-<li>Emergence and complexity</li>
+<li>RNA World</li>
+<li>Metabolism First</li>
+<li>Protocell First</li>
+<li>Autocatalytic Set Theory</li>
+<li>Systems Chemistry Approaches</li>
+<li>Hybrid Models</li>
 </ul>
-<p>The package is intentionally hypothesis-neutral and can be used to discuss RNA World, metabolism-first models, protocell-first models, autocatalytic set theory, and other origin-of-life frameworks.</p>
-<hr>
+<p><code>lifesimulatoR</code> provides simplified computational models that allow users to explore the mechanisms often discussed within these frameworks.</p>
+<p>The package is intentionally hypothesis-neutral and is designed as a conceptual and educational tool rather than a chemically realistic reconstruction of abiogenesis.</p>
 </div>
 <div class="section level2">
 <h2 id="main-features">Main Features<a class="anchor" aria-label="anchor" href="#main-features"></a>
 </h2>
+<div class="section level3">
+<h3 id="molecular-evolution">Molecular Evolution<a class="anchor" aria-label="anchor" href="#molecular-evolution"></a>
+</h3>
 <ul>
-<li>Simulate evolving molecular populations</li>
-<li>Explore mutation, selection, and fitness landscapes</li>
-<li>Compute diversity and entropy metrics</li>
-<li>Simulate autocatalytic reaction networks</li>
-<li>Simulate protocell growth, leakage, and division</li>
-<li>Visualize simulation trajectories using <code>ggplot2</code>
-</li>
-<li>Educational examples suitable for teaching origin-of-life concepts</li>
+<li>Generate symbolic molecular populations</li>
+<li>Simulate replication and inheritance</li>
+<li>Explore mutation and selection dynamics</li>
+<li>Investigate evolutionary trajectories</li>
 </ul>
-<hr>
+</div>
+<div class="section level3">
+<h3 id="diversity-and-complexity">Diversity and Complexity<a class="anchor" aria-label="anchor" href="#diversity-and-complexity"></a>
+</h3>
+<ul>
+<li>Compute Shannon entropy</li>
+<li>Measure population diversity</li>
+<li>Explore information and complexity concepts</li>
+<li>Track changes through time</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="protocells">Protocells<a class="anchor" aria-label="anchor" href="#protocells"></a>
+</h3>
+<ul>
+<li>Simulate compartment growth</li>
+<li>Explore leakage and resource retention</li>
+<li>Model protocell division dynamics</li>
+<li>Investigate compartment-based selection</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="autocatalytic-networks">Autocatalytic Networks<a class="anchor" aria-label="anchor" href="#autocatalytic-networks"></a>
+</h3>
+<ul>
+<li>Simulate catalytic interaction networks</li>
+<li>Explore feedback loops and self-maintenance</li>
+<li>Investigate network-level emergence</li>
+<li>Study alternative origin-of-life scenarios</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="visualization-and-analysis">Visualization and Analysis<a class="anchor" aria-label="anchor" href="#visualization-and-analysis"></a>
+</h3>
+<ul>
+<li>Summarize simulation outputs</li>
+<li>Visualize trajectories using <code>ggplot2</code>
+</li>
+<li>Compare alternative parameter settings</li>
+<li>Support classroom demonstrations and assignments</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -135,6 +197,101 @@
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"NoushinN/lifesimulatoR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="quick-example">Quick Example<a class="anchor" aria-label="anchor" href="#quick-example"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/yourusername/lifesimulatoR" class="external-link">lifesimulatoR</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/simulate_abiogenesis.html">simulate_abiogenesis</a></span><span class="op">(</span></span>
+<span>  n_molecules <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  generations <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  mutation_rate <span class="op">=</span> <span class="fl">0.02</span>,</span>
+<span>  selection_strength <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  seed <span class="op">=</span> <span class="fl">123</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/plot_simulation.html">plot_simulation</a></span><span class="op">(</span></span>
+<span>  <span class="va">sim</span>,</span>
+<span>  x <span class="op">=</span> <span class="st">"generation"</span>,</span>
+<span>  y <span class="op">=</span> <span class="st">"mean_fitness"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="learning-path">Learning Path<a class="anchor" aria-label="anchor" href="#learning-path"></a>
+</h2>
+<p>New users are encouraged to follow this progression:</p>
+<ol style="list-style-type: decimal">
+<li>Read the companion book introduction.</li>
+<li>Work through the Getting Started vignette.</li>
+<li>Explore Molecular Evolution.</li>
+<li>Study Diversity and Complexity metrics.</li>
+<li>Investigate Protocell simulations.</li>
+<li>Explore Autocatalytic Networks.</li>
+<li>Compare alternative origin-of-life hypotheses.</li>
+</ol>
+</div>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<div class="section level3">
+<h3 id="package-website">Package Website<a class="anchor" aria-label="anchor" href="#package-website"></a>
+</h3>
+<p><a href="https://noushinn.github.io/lifesimulatoR/" class="external-link uri">https://noushinn.github.io/lifesimulatoR/</a></p>
+</div>
+<div class="section level3">
+<h3 id="companion-book-1">Companion Book<a class="anchor" aria-label="anchor" href="#companion-book-1"></a>
+</h3>
+<p><a href="https://noushinn.github.io/lifesimulatoR-book/" class="external-link uri">https://noushinn.github.io/lifesimulatoR-book/</a></p>
+</div>
+<div class="section level3">
+<h3 id="source-code">Source Code<a class="anchor" aria-label="anchor" href="#source-code"></a>
+</h3>
+<p><a href="https://github.com/NoushinN/lifesimulatoR" class="external-link uri">https://github.com/NoushinN/lifesimulatoR</a></p>
+</div>
+<div class="section level3">
+<h3 id="report-issues">Report Issues<a class="anchor" aria-label="anchor" href="#report-issues"></a>
+</h3>
+<p><a href="https://github.com/NoushinN/lifesimulatoR/issues" class="external-link uri">https://github.com/NoushinN/lifesimulatoR/issues</a></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="educational-scope">Educational Scope<a class="anchor" aria-label="anchor" href="#educational-scope"></a>
+</h2>
+<p>The models implemented in <code>lifesimulatoR</code> are intentionally simplified and should be viewed as conceptual teaching and learning tools.</p>
+<p>They are designed to help users explore mechanisms frequently discussed in origin-of-life research, including:</p>
+<ul>
+<li>Variation</li>
+<li>Replication</li>
+<li>Mutation</li>
+<li>Selection</li>
+<li>Diversity</li>
+<li>Compartmentalization</li>
+<li>Autocatalysis</li>
+<li>Emergence</li>
+</ul>
+<p>Simulation results should not be interpreted as evidence for specific historical pathways leading to life on Earth.</p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use <code>lifesimulatoR</code> in teaching, presentations, or publications, please cite the package using:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"lifesimulatoR"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>MIT License</p>
+</div>
+<div class="section level2">
+<h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a>
+</h2>
+<p><strong>Noushin Nabavi</strong></p>
+<p>Educational simulations for origin-of-life science, complexity, and emergence.</p>
 </div>
 </div>
   </div>

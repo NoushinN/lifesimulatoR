@@ -1,3 +1,5 @@
+<img src="man/figures/lifesimulatoR_hex.png" align="right" width="80" alt="lifesimulatoR hex sticker" />
+
 # lifesimulatoR
 
 [![R](https://img.shields.io/badge/R-4.3%2B-blue)](https://www.r-project.org/)
